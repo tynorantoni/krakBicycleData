@@ -10,7 +10,7 @@ services:
   - docker # required, but travis uses older version of docker :(
 
 script:
-    - echo "skipping tests"
+  - echo "skipping tests"
 
 after_success:
   - docker --version  # document the version travis is using
