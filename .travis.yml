@@ -2,17 +2,16 @@ sudo: required #is required to use docker service in travis
 
 language: python #can be any language, just php for example
 
-env:
-  global:
-    - aws_access_key_id=AKIA2ULT5A7THDQ6SQXY
-    - aws_secret_access_key=0HuaqqUfrxPiLuzGZG/oG3mX+3oQMkHt9nzrtnfX
-
 services:
   - docker # required, but travis uses older version of docker :(
 
 script:
   - echo "skipping tests"
 
+env:
+  global:
+    - aws_access_key_id=AKIA2ULT5A7THDQ6SQXY
+    - aws_secret_access_key=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
 after_success:
   - docker --version  # document the version travis is using
   - pip install awscli # install aws cli w/o sudo
