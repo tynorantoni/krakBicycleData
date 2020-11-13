@@ -8,15 +8,12 @@ services:
 script:
   - echo "skipping tests"
 
-env:
-  global:
-    - aws_access_key_id=AKIA2ULT5A7THDQ6SQXY
-    - aws_secret_access_key=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
+before_install:
+    - ./scripts/ecr_credentials.sh
 after_success:
   - docker --version  # document the version travis is using
-  - pip install --user awscli # install aws cli w/o sudo
+  - pip install awscli # install aws cli w/o sudo
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
-  - aws configure list
   - eval $(aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 730924386278.dkr.ecr.us-east-2.amazonaws.com) #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
   - docker build -t bikedata .
   - docker tag bikedata:latest 730924386278.dkr.ecr.us-east-1.amazonaws.com/bikedata:latest
