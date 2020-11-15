@@ -16,5 +16,5 @@ after_success:
   - export PATH=$PATH:$HOME/.local/bin # put aws in the path
   - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 730924386278.dkr.ecr.us-east-2.amazonaws.com #needs AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY envvars
   - docker build -t bikedata .
-  - docker tag bikedata:latest 730924386278.dkr.ecr.us-east-1.amazonaws.com/bikedata:latest
-  - docker push 730924386278.dkr.ecr.us-east-1.amazonaws.com/bikedata:latest
+  - docker tag bikedata:latest 730924386278.dkr.ecr.us-east-2.amazonaws.com/bikedata:latest
+  - docker push 730924386278.dkr.ecr.us-east-2.amazonaws.com/bikedata:latest
